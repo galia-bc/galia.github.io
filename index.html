@@ -3,44 +3,68 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Galia's Gambling Club, a Bondage Club addon with multiplayer canvas games, dice, coins, trades, and playful chat-room effects.">
+    <meta name="description" content="Galia's Gambling Club, a Bondage Club addon with canvas games, a bank app, trades, dice, coins, and animated chat-room effects.">
     <title>Galia's Gambling Club</title>
     <style>
       :root {
         color-scheme: dark;
-        --bg: #14091d;
-        --panel: #21102f;
-        --panel-soft: #2d1740;
-        --text: #f7edff;
-        --muted: #ccb7dc;
-        --accent: #c77dff;
-        --accent-strong: #9d4edd;
-        --gold: #f8d87a;
-        --line: #4f2670;
+        --ink: #201826;
+        --paper: #fff8ea;
+        --paper-soft: #f6ecd9;
+        --cream: #f9f0df;
+        --line: #35273f;
+        --purple: #7b2cbf;
+        --purple-deep: #3c096c;
+        --pink: #ff6fb1;
+        --gold: #f8c44f;
+        --green: #4fb286;
+        --blue: #4f7fd9;
+        --white: #ffffff;
+        --muted: #695d70;
+        --shadow: 0 24px 70px rgba(20, 12, 28, 0.34);
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
         min-height: 100vh;
         background:
-          radial-gradient(circle at 78% 12%, rgba(199, 125, 255, 0.18), transparent 28rem),
-          linear-gradient(160deg, #120719 0%, #1b0d28 48%, #0f1017 100%);
-        color: var(--text);
+          linear-gradient(90deg, rgba(32, 24, 38, 0.04) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(32, 24, 38, 0.04) 1px, transparent 1px),
+          linear-gradient(155deg, #fff7e8 0%, #f0e5d6 47%, #e5ecf5 100%);
+        background-size: 28px 28px, 28px 28px, auto;
+        color: var(--ink);
         font-family: Arial, Helvetica, sans-serif;
         letter-spacing: 0;
       }
 
+      img {
+        display: block;
+      }
+
       a {
-        color: var(--gold);
+        color: inherit;
       }
 
       .shell {
-        width: min(1120px, calc(100% - 32px));
+        width: min(1160px, calc(100% - 32px));
         margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 248, 234, 0.88);
+        border-bottom: 1px solid rgba(53, 39, 63, 0.14);
+        backdrop-filter: blur(14px);
       }
 
       header {
@@ -48,268 +72,502 @@
         align-items: center;
         justify-content: space-between;
         gap: 20px;
-        padding: 24px 0;
+        min-height: 72px;
       }
 
       .brand {
         display: flex;
         align-items: center;
         gap: 12px;
-        font-weight: 900;
+        font-weight: 950;
       }
 
-      .mark {
-        display: grid;
-        place-items: center;
+      .brand-mark {
         width: 42px;
         height: 42px;
-        border-radius: 50%;
-        background: #3c096c;
-        border: 2px solid #240442;
-        color: #f0d8ff;
-        box-shadow: 0 0 22px rgba(199, 125, 255, 0.2);
-      }
-
-      .mark img,
-      .center img {
-        width: 72%;
-        height: 72%;
         object-fit: contain;
-        display: block;
+        filter: drop-shadow(0 8px 14px rgba(60, 9, 108, 0.22));
       }
 
       nav {
         display: flex;
-        gap: 16px;
+        align-items: center;
+        gap: 8px;
         font-size: 14px;
+        font-weight: 800;
       }
 
       nav a {
+        padding: 10px 12px;
+        border-radius: 6px;
         color: var(--muted);
         text-decoration: none;
       }
 
       nav a:hover {
-        color: var(--text);
+        color: var(--ink);
+        background: rgba(123, 44, 191, 0.08);
       }
 
       .hero {
-        min-height: calc(100vh - 116px);
+        position: relative;
+        min-height: calc(100vh - 72px);
         display: grid;
         align-items: center;
-        padding: 24px 0 80px;
+        padding: 52px 0 72px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, rgba(123, 44, 191, 0.11), transparent 32%),
+          linear-gradient(315deg, rgba(248, 196, 79, 0.16), transparent 38%);
+        pointer-events: none;
       }
 
       .hero-grid {
+        position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-        gap: 44px;
+        grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+        gap: 54px;
         align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding: 7px 11px;
+        border: 1px solid rgba(53, 39, 63, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.58);
+        color: var(--purple-deep);
+        font-size: 12px;
+        font-weight: 950;
+        text-transform: uppercase;
       }
 
       h1 {
         margin: 0;
         max-width: 760px;
-        font-size: clamp(44px, 7vw, 88px);
-        line-height: 0.95;
+        font-size: clamp(44px, 7.4vw, 90px);
+        line-height: 0.92;
         letter-spacing: 0;
       }
 
       .lead {
         max-width: 640px;
-        margin: 24px 0 0;
-        color: var(--muted);
+        margin: 22px 0 0;
+        color: #56495e;
         font-size: 19px;
-        line-height: 1.6;
+        line-height: 1.55;
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 30px;
+        margin-top: 28px;
       }
 
       .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 44px;
+        gap: 8px;
+        min-height: 46px;
         padding: 0 18px;
-        border-radius: 6px;
-        background: var(--accent-strong);
-        border: 1px solid #5f1597;
-        color: #fff;
-        font-weight: 800;
+        border-radius: 7px;
+        border: 2px solid #26043f;
+        background: var(--purple);
+        box-shadow: 0 8px 0 #26043f;
+        color: var(--white);
+        font-weight: 950;
         text-decoration: none;
+        transition: transform 0.16s ease, box-shadow 0.16s ease;
+      }
+
+      .button:hover {
+        transform: translateY(2px);
+        box-shadow: 0 6px 0 #26043f;
       }
 
       .button.secondary {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: var(--line);
-        color: var(--text);
+        background: var(--ink);
       }
 
-      .script {
-        margin-top: 24px;
-        padding: 14px 16px;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        background: rgba(10, 8, 14, 0.58);
-        color: #fff;
-        font: 14px/1.5 Consolas, Monaco, monospace;
-        overflow-wrap: anywhere;
+      .button.gold {
+        background: var(--gold);
+        color: var(--ink);
       }
 
-      .script + .script {
-        margin-top: 10px;
-      }
-
-      .preview {
+      .arcade {
         position: relative;
-        min-height: 430px;
+        min-height: 520px;
       }
 
-      .orbital {
+      .phone {
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        width: 238px;
+        height: 456px;
+        padding: 18px 14px;
+        border: 8px solid #17131b;
+        border-radius: 38px;
+        background: linear-gradient(180deg, #fbf9ff 0%, #f1e9ff 100%);
+        box-shadow: var(--shadow);
+      }
+
+      .phone::before {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: 50%;
+        width: 78px;
+        height: 19px;
+        transform: translateX(-50%);
+        border-radius: 12px;
+        background: #17131b;
+      }
+
+      .bank-logo {
         position: absolute;
         inset: 0;
-        display: grid;
-        place-items: center;
+        width: 74%;
+        height: 74%;
+        margin: auto;
+        object-fit: contain;
+        opacity: 0.05;
       }
 
-      .center {
-        display: grid;
-        place-items: center;
-        width: 116px;
-        height: 116px;
-        border-radius: 50%;
-        background: #3c096c;
-        border: 4px solid #25033f;
-        color: #f1d6ff;
-        font-size: 30px;
-        font-weight: 900;
-        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35), 0 0 32px rgba(199, 125, 255, 0.28);
+      .phone-screen {
+        position: relative;
+        height: 100%;
+        padding: 34px 14px 16px;
+        overflow: hidden;
       }
 
-      .ring {
-        position: absolute;
-        border-radius: 50%;
-        border: 42px solid rgba(157, 78, 221, 0.86);
-      }
-
-      .ring.one {
-        width: 230px;
-        height: 230px;
-        border-color: rgba(157, 78, 221, 0.84);
-      }
-
-      .ring.two {
-        width: 340px;
-        height: 340px;
-        border-color: rgba(199, 125, 255, 0.24);
-      }
-
-      .chip {
-        position: absolute;
-        display: grid;
-        place-items: center;
-        min-width: 92px;
-        height: 44px;
-        padding: 0 14px;
-        border-radius: 999px;
-        background: #7b2cbf;
-        border: 2px solid #451f55;
-        color: #fff;
+      .bank-title {
+        margin: 0;
+        color: var(--purple-deep);
         font-size: 13px;
-        font-weight: 900;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+        font-weight: 950;
+        text-transform: uppercase;
       }
 
-      .chip.games {
+      .balance {
+        margin: 22px 0 18px;
+        padding: 18px 14px;
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: 0 14px 30px rgba(60, 9, 108, 0.12);
+      }
+
+      .balance span {
+        display: block;
+        color: #81748a;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .balance strong {
+        display: block;
+        margin-top: 6px;
+        color: var(--ink);
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .phone-button {
+        margin-bottom: 9px;
+        padding: 13px 14px;
+        border-radius: 14px;
+        background: var(--purple);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 950;
+      }
+
+      .phone-button.alt {
+        background: #efe8f8;
+        color: var(--purple-deep);
+      }
+
+      .radial {
+        position: absolute;
+        left: 0;
         top: 70px;
+        width: 318px;
+        height: 318px;
+      }
+
+      .radial-center {
+        position: absolute;
         left: 50%;
+        top: 50%;
+        width: 94px;
+        height: 94px;
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-items: center;
+        border: 5px solid #26043f;
+        border-radius: 50%;
+        background: var(--purple);
+        box-shadow: var(--shadow);
+      }
+
+      .radial-center img {
+        width: 66px;
+        height: 66px;
+        object-fit: contain;
+      }
+
+      .radial-chip {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 112px;
+        min-height: 44px;
+        padding: 8px 13px;
+        border: 3px solid #26043f;
+        border-radius: 999px;
+        background: #ffffff;
+        box-shadow: 0 8px 0 #26043f;
+        font-size: 12px;
+        font-weight: 950;
+      }
+
+      .radial-chip img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      .radial-chip.one {
+        left: 50%;
+        top: 0;
         transform: translateX(-50%);
       }
 
-      .chip.trade {
-        top: 48%;
+      .radial-chip.two {
         right: 0;
+        top: 50%;
+        transform: translateY(-50%);
       }
 
-      .chip.dice {
-        bottom: 58px;
-        left: 54%;
+      .radial-chip.three {
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
       }
 
-      .chip.snake {
-        top: 48%;
+      .radial-chip.four {
         left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .stat-strip {
+        position: absolute;
+        left: 42px;
+        bottom: 34px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 360px;
+        border: 3px solid #26043f;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 0 #26043f;
+      }
+
+      .stat {
+        padding: 15px 12px;
+        background: var(--ink);
+        color: var(--white);
+        text-align: center;
+      }
+
+      .stat:nth-child(2) {
+        background: var(--purple);
+      }
+
+      .stat:nth-child(3) {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 22px;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 2px;
+        font-size: 11px;
+        font-weight: 900;
       }
 
       section {
-        padding: 72px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 78px 0;
+        border-top: 1px solid rgba(53, 39, 63, 0.14);
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 24px;
       }
 
       h2 {
-        margin: 0 0 18px;
-        font-size: 32px;
+        margin: 0;
+        font-size: clamp(32px, 4vw, 52px);
+        line-height: 1;
       }
 
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .card {
-        min-height: 168px;
-        padding: 22px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(33, 16, 47, 0.78);
-      }
-
-      .card h3 {
-        margin: 0 0 10px;
-        font-size: 18px;
-      }
-
-      .card p {
+      .section-head p {
+        max-width: 520px;
         margin: 0;
         color: var(--muted);
         line-height: 1.55;
       }
 
-      .install {
+      .game-grid {
         display: grid;
-        grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1.2fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .game-card {
+        min-height: 196px;
+        padding: 18px;
+        border: 2px solid rgba(53, 39, 63, 0.22);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.64);
+        box-shadow: 0 18px 38px rgba(32, 24, 38, 0.09);
+      }
+
+      .game-icon {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        margin-bottom: 14px;
+      }
+
+      .game-card h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .game-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.48;
+      }
+
+      .feature-band {
+        display: grid;
+        grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+        gap: 32px;
+        align-items: stretch;
+      }
+
+      .panel {
+        padding: 28px;
+        border: 3px solid #26043f;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.66);
+        box-shadow: 0 10px 0 #26043f;
+      }
+
+      .panel.dark {
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .panel h3 {
+        margin: 0 0 12px;
+        font-size: 26px;
+      }
+
+      .panel p {
+        margin: 0;
+        color: inherit;
+        line-height: 1.55;
+      }
+
+      .tool-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .tool {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 14px;
+        border: 2px solid rgba(53, 39, 63, 0.18);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.72);
+        font-weight: 900;
+      }
+
+      .tool img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+      }
+
+      .install-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.84fr) minmax(340px, 1.16fr);
         gap: 28px;
-        align-items: start;
+      }
+
+      .script-box {
+        padding: 14px 16px;
+        border: 2px solid rgba(53, 39, 63, 0.24);
+        border-radius: 8px;
+        background: #fffdf8;
+        color: #2b2231;
+        font: 13px/1.5 Consolas, Monaco, monospace;
+        overflow-wrap: anywhere;
+      }
+
+      .script-box + .script-box {
+        margin-top: 10px;
       }
 
       ol {
         margin: 0;
         padding-left: 22px;
         color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .links {
-        display: grid;
-        gap: 10px;
+        line-height: 1.75;
       }
 
       footer {
-        padding: 36px 0 52px;
+        padding: 34px 0 52px;
         color: var(--muted);
         font-size: 14px;
       }
 
-      @media (max-width: 820px) {
+      @media (max-width: 920px) {
         header {
           align-items: flex-start;
           flex-direction: column;
+          padding: 14px 0;
+        }
+
+        nav {
+          flex-wrap: wrap;
         }
 
         .hero {
@@ -317,128 +575,259 @@
         }
 
         .hero-grid,
-        .install,
-        .cards {
+        .feature-band,
+        .install-grid {
           grid-template-columns: 1fr;
         }
 
-        .preview {
-          min-height: 360px;
+        .arcade {
+          min-height: 560px;
+        }
+
+        .phone {
+          right: 0;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .game-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .arcade {
+          min-height: 620px;
+        }
+
+        .radial {
+          left: 50%;
+          top: 0;
+          transform: translateX(-50%) scale(0.86);
+        }
+
+        .phone {
+          left: 50%;
+          right: auto;
+          top: 250px;
+          transform: translateX(-50%) scale(0.86);
+        }
+
+        .stat-strip {
+          left: 50%;
+          bottom: 0;
+          width: min(100%, 340px);
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 520px) {
+        .game-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .radial {
+          transform: translateX(-50%) scale(0.74);
+        }
+
+        .phone {
+          transform: translateX(-50%) scale(0.78);
         }
       }
     </style>
   </head>
   <body>
-    <header class="shell">
-      <div class="brand">
-        <div class="mark"><img src="club-gaming/beta/images/galias_logo.png" alt=""></div>
-        <span>Galia's Gambling Club</span>
-      </div>
-      <nav aria-label="Main navigation">
-        <a href="#features">Features</a>
-        <a href="#install">Install</a>
-        <a href="#feedback">Feedback</a>
-        <a href="https://github.com/galia-bc/galia.github.io">GitHub</a>
-      </nav>
-    </header>
+    <div class="topbar">
+      <header class="shell">
+        <div class="brand">
+          <img class="brand-mark" src="club-gaming/beta/images/galias_logo.png" alt="">
+          <span>Galia's Gambling Club</span>
+        </div>
+        <nav aria-label="Main navigation">
+          <a href="#games">Games</a>
+          <a href="#bank">Bank</a>
+          <a href="#install">Install</a>
+          <a href="#feedback">Feedback</a>
+          <a href="https://github.com/galia-bc/galia.github.io">GitHub</a>
+        </nav>
+      </header>
+    </div>
 
     <main>
-      <section class="hero shell">
-        <div class="hero-grid">
+      <section class="hero">
+        <div class="shell hero-grid">
           <div>
+            <div class="eyebrow">Bondage Club addon</div>
             <h1>Galia's Gambling Club</h1>
             <p class="lead">
-              A Bondage Club addon that adds canvas games, dice and coin animations, trades, playful text effects, and a radial menu built for chat-room interactions.
+              A room-ready addon with canvas games, a phone-style bank, animated dice and coins, trades, and a radial menu that makes chat interactions feel alive.
             </p>
             <div class="actions">
-              <a class="button" href="#install">Install guide</a>
+              <a class="button" href="#install">Install GGC</a>
               <a class="button secondary" href="club-gaming/beta/club-gaming.js">Open beta script</a>
+              <a class="button gold" href="club-gaming/stable/club-gaming.js">Open stable script</a>
             </div>
-            <div class="script">Beta: https://galia-bc.github.io/club-gaming/beta/club-gaming.js</div>
-            <div class="script">Stable: https://galia-bc.github.io/club-gaming/stable/club-gaming.js</div>
           </div>
-          <div class="preview" aria-hidden="true">
-            <div class="orbital">
-              <div class="ring two"></div>
-              <div class="ring one"></div>
-              <div class="center"><img src="club-gaming/beta/images/galias_logo.png" alt=""></div>
-              <div class="chip games">GAMES</div>
-              <div class="chip trade">TRADE</div>
-              <div class="chip dice">DICE</div>
-              <div class="chip snake">SNAKE</div>
+
+          <div class="arcade" aria-label="GGC interface preview">
+            <div class="radial" aria-hidden="true">
+              <div class="radial-center"><img src="club-gaming/beta/images/galias_logo.png" alt=""></div>
+              <div class="radial-chip one"><img src="club-gaming/beta/images/tictactoe_icon.png" alt="">Games</div>
+              <div class="radial-chip two"><img src="club-gaming/beta/images/money_icon.png" alt="">Bank</div>
+              <div class="radial-chip three"><img src="club-gaming/beta/images/2dices_icon.png" alt="">Dice</div>
+              <div class="radial-chip four"><img src="club-gaming/beta/images/trade_contract_text.png" alt="">Trade</div>
+            </div>
+
+            <div class="phone" aria-hidden="true">
+              <img class="bank-logo" src="club-gaming/beta/images/galias_logo.png" alt="">
+              <div class="phone-screen">
+                <p class="bank-title">GGC Bank</p>
+                <div class="balance">
+                  <span>Available balance</span>
+                  <strong>$12291</strong>
+                </div>
+                <div class="phone-button">Send money</div>
+                <div class="phone-button alt">Latest transfers</div>
+                <div class="phone-button alt">Settings</div>
+              </div>
+            </div>
+
+            <div class="stat-strip" aria-hidden="true">
+              <div class="stat"><strong>9</strong><span>Games</span></div>
+              <div class="stat"><strong>Bank</strong><span>Transfers</span></div>
+              <div class="stat"><strong>FX</strong><span>Animations</span></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="features">
+      <section id="games">
         <div class="shell">
-          <h2>What It Adds</h2>
-          <div class="cards">
-            <article class="card">
-              <h3>Games In Chat</h3>
-              <p>Play Snake, Slots, Tic-Tac-Toe, Battleship, Connect 4, and Blackjack from an in-canvas interface.</p>
+          <div class="section-head">
+            <h2>Canvas Games</h2>
+            <p>Single-player quick games and multiplayer room games live inside BC-style canvases with shared detection, hints, custom controls, and persistent scores where it makes sense.</p>
+          </div>
+          <div class="game-grid">
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/minesweeper_icon.png" alt="">
+              <h3>Minesweeper</h3>
+              <p>Choose a board, tune mines, mark flags, chase the timer, and try not to boom.</p>
             </article>
-            <article class="card">
-              <h3>Radial Menu</h3>
-              <p>Open GGC from the character dialog and choose games, dice, coins, ghosting, and trades with quick hover feedback.</p>
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/snake_icon.png" alt="">
+              <h3>Snake</h3>
+              <p>A compact single-player classic with saved scores and crisp canvas controls.</p>
             </article>
-            <article class="card">
-              <h3>Room Effects</h3>
-              <p>Dice, coin tosses, item text, hearts, shocks, slaps, and other animations appear over the relevant character.</p>
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/slotmachine_icon.png" alt="">
+              <h3>Slots</h3>
+              <p>Spin reels, play with GGC money, and enjoy punchy casino-style feedback.</p>
             </article>
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/blackjack_icon.png" alt="">
+              <h3>Blackjack</h3>
+              <p>Bet, hit, stand, and play against the table with a polished shared HUD.</p>
+            </article>
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/battleship_icon.png" alt="">
+              <h3>Battleship</h3>
+              <p>Set your fleet, fire into fog, and watch the water effects land in-room.</p>
+            </article>
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/connect4_icon.png" alt="">
+              <h3>Connect 4</h3>
+              <p>Fast two-player turns with clean board visuals and drop feedback.</p>
+            </article>
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/tictactoe_icon.png" alt="">
+              <h3>Tic-Tac-Toe</h3>
+              <p>A simple duel launcher for quick challenges from the radial menu.</p>
+            </article>
+            <article class="game-card">
+              <img class="game-icon" src="club-gaming/beta/images/liarsdice_icon.png" alt="">
+              <h3>Liars Dice</h3>
+              <p>Bluff, read the room, and keep the table tense with hidden rolls.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="bank">
+        <div class="shell feature-band">
+          <div class="panel dark">
+            <h3>GGC Bank</h3>
+            <p>The bank is a mobile-style interface for balances, money transfers, recent transactions, account permissions, auto-accept rules, and remote account control when another player has granted access.</p>
+          </div>
+          <div class="tool-list">
+            <div class="tool"><img src="club-gaming/beta/images/money_icon.png" alt="">Send money to compatible players.</div>
+            <div class="tool"><img src="club-gaming/beta/images/bank_icon.png" alt="">Review recent saved transfers.</div>
+            <div class="tool"><img src="club-gaming/beta/images/ownership_icon.png" alt="">Configure bank and Findom permissions.</div>
+            <div class="tool"><img src="club-gaming/beta/images/galias_logo.png" alt="">Use hidden GGC messages for remote account checks.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tools">
+        <div class="shell feature-band">
+          <div class="panel">
+            <h3>Radial Tools</h3>
+            <p>Open GGC from a character dialog and use the radial menu for games, dice, coins, trades, bank access, and utility actions. It detects who has the addon and disables controls with useful hover feedback when a feature is unavailable.</p>
+          </div>
+          <div class="tool-list">
+            <div class="tool"><img src="club-gaming/beta/images/1dice_icon.png" alt="">One-die and two-dice rolls.</div>
+            <div class="tool"><img src="club-gaming/beta/images/coin_throw_icon.png" alt="">Coin tosses with room-visible motion.</div>
+            <div class="tool"><img src="club-gaming/beta/images/trade_contract_text.png" alt="">Trade and bet flows with stake checks.</div>
+            <div class="tool"><img src="club-gaming/beta/images/lips_image.png" alt="">Room effects for playful actions.</div>
           </div>
         </div>
       </section>
 
       <section id="install">
-        <div class="shell install">
+        <div class="shell install-grid">
           <div>
-            <h2>Install</h2>
-            <p class="lead">Use the stable or beta script URL in your preferred Bondage Club addon loader or userscript manager.</p>
+            <div class="section-head" style="display:block;margin-bottom:18px">
+              <h2>Install</h2>
+            </div>
+            <ol>
+              <li>Copy one of the script URLs.</li>
+              <li>Add it to your Bondage Club addon loader or userscript manager.</li>
+              <li>Reload Bondage Club and join a room.</li>
+              <li>Open a character dialog and look for the GGC radial menu.</li>
+            </ol>
+            <div class="actions">
+              <a class="button" href="INSTALLATION.md">Detailed guide</a>
+              <a class="button secondary" href="https://github.com/galia-bc/galia.github.io">Repository</a>
+            </div>
           </div>
-          <ol>
-            <li>Copy the stable or beta script URL shown above.</li>
-            <li>Add it to your Bondage Club addon loader, or create a userscript that requires it.</li>
-            <li>Reload Bondage Club and enter a chat room.</li>
-            <li>Open a character dialog and use the floating GGC radial menu.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section id="channels">
-        <div class="shell install">
           <div>
-            <h2>Release Channels</h2>
-            <p class="lead">Beta receives the newest builds first. Stable is kept separate so tested releases can stay calm while beta keeps moving.</p>
-          </div>
-          <div class="links">
-            <div class="script">Beta bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{src:'https://galia-bc.github.io/club-gaming/beta/club-gaming.js?v='+Date.now()}));})();</div>
-            <div class="script">Legacy beta bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{src:'https://galia-bc.github.io/galia.github.io/club-gaming/club-gaming.js?v='+Date.now()}));})();</div>
-            <div class="script">Stable bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{src:'https://galia-bc.github.io/club-gaming/stable/club-gaming.js?v='+Date.now()}));})();</div>
+            <div class="script-box">Beta: https://galia-bc.github.io/club-gaming/beta/club-gaming.js</div>
+            <div class="script-box">Stable: https://galia-bc.github.io/club-gaming/stable/club-gaming.js</div>
+            <div class="script-box">Beta bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{src:'https://galia-bc.github.io/club-gaming/beta/club-gaming.js?v='+Date.now()}));})();</div>
           </div>
         </div>
       </section>
 
       <section id="feedback">
-        <div class="shell install">
-          <div>
-            <h2>Feedback</h2>
-            <p class="lead">Found something odd, or have an idea for a game, animation, setting, or interaction? Send it through GitHub so it can be tracked properly.</p>
+        <div class="shell feature-band">
+          <div class="panel">
+            <h3>Feedback</h3>
+            <p>Bug reports are most useful when they include what happened, what you expected, reproduction steps, browser, and the GGC version shown in the addon.</p>
           </div>
-          <div>
-            <div class="actions" style="margin-top: 0">
-              <a class="button" href="https://github.com/galia-bc/galia.github.io/issues/new?title=%5BBug%5D%20&body=What%20happened%3F%0A%0AWhat%20did%20you%20expect%3F%0A%0ASteps%20to%20reproduce%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AGGC%20version%3A%0ABrowser%3A">Report a bug</a>
-              <a class="button secondary" href="https://github.com/galia-bc/galia.github.io/issues/new?title=%5BIdea%5D%20&body=What%20would%20you%20like%20GGC%20to%20do%3F%0A%0AWhy%20would%20it%20be%20useful%3F">Suggest an idea</a>
+          <div class="panel dark">
+            <div class="actions" style="margin-top:0">
+              <a class="button gold" href="https://github.com/galia-bc/galia.github.io/issues/new?title=%5BBug%5D%20&body=What%20happened%3F%0A%0AWhat%20did%20you%20expect%3F%0A%0ASteps%20to%20reproduce%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AGGC%20version%3A%0ABrowser%3A">Report a bug</a>
+              <a class="button" href="https://github.com/galia-bc/galia.github.io/issues/new?title=%5BIdea%5D%20&body=What%20would%20you%20like%20GGC%20to%20do%3F%0A%0AWhy%20would%20it%20be%20useful%3F">Suggest an idea</a>
             </div>
-            <p class="lead" style="font-size: 16px; margin-top: 18px">Bug reports are easier to fix when they include what happened, what you expected, steps to reproduce it, your browser, and the GGC version shown in the addon.</p>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="shell">
-      Galia's Gambling Club is an unofficial community addon. Keep both players updated for multiplayer features.
+      Galia's Gambling Club is an unofficial community addon and is not affiliated with Bondage Club. Shared features work best when everyone involved uses a compatible GGC version.
     </footer>
   </body>
 </html>
