@@ -365,9 +365,15 @@
         <div>
           <section id="install">
             <h2>Installation</h2>
-            <p>Use one of these script URLs in your preferred Bondage Club addon loader or userscript manager. Stable is recommended for everyday play. Beta receives new features first.</p>
+            <p>Stable is recommended for everyday play. Beta receives new features first. You can use either URL in a Bondage Club addon loader, or choose one of the simpler methods below.</p>
             <div class="script">Stable: https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js</div>
             <div class="script">Beta: https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js</div>
+            <h3>Tampermonkey or Violentmonkey (recommended)</h3>
+            <p>Install Tampermonkey or Violentmonkey, create a new userscript, and paste the Stable template from the <a href="https://github.com/galia-bc/galia.github.io/blob/main/INSTALLATION.md#tampermonkey--violentmonkey">GitHub installation guide</a>. Save it and GGC will start automatically whenever Bondage Club opens. A Beta template is available there too; only enable one GGC userscript at a time.</p>
+            <h3>Bookmarklet (temporary)</h3>
+            <p>Create a browser bookmark, paste this as its URL, then open Bondage Club and select the bookmark. It must be run again after every page reload.</p>
+            <div class="script">Stable bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{crossOrigin:'anonymous',src:'https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js?v='+Date.now()}));})();</div>
+            <div class="script">Beta bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{crossOrigin:'anonymous',src:'https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js?v='+Date.now()}));})();</div>
             <ol>
               <li>Add the script URL to your addon loader.</li>
               <li>Save the loader settings.</li>

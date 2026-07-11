@@ -546,6 +546,16 @@
         margin-top: 10px;
       }
 
+      .install-option {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .install-option strong {
+        color: var(--ink);
+      }
+
       ol {
         margin: 0;
         padding-left: 22px;
@@ -791,11 +801,13 @@
             <div class="section-head" style="display:block;margin-bottom:18px">
               <h2>Install</h2>
             </div>
+            <p class="install-option"><strong>Tampermonkey / Violentmonkey:</strong> the recommended persistent option. Create a userscript using the Stable or Beta template in the detailed guide, save it, then GGC loads automatically whenever you open Bondage Club.</p>
+            <p class="install-option"><strong>Bookmarklet:</strong> a quick temporary option. Save one of the bookmarklet lines as a browser bookmark, open Bondage Club, then select the bookmark. Run it again after reloading the page.</p>
             <ol>
-              <li>Copy one of the script URLs.</li>
-              <li>Add it to your Bondage Club addon loader or userscript manager.</li>
-              <li>Reload Bondage Club and join a room.</li>
-              <li>Open a character dialog and look for the GGC radial menu.</li>
+              <li>Choose Stable for everyday play, or Beta for the newest features.</li>
+              <li>Use the URL with an addon loader, or copy a template from the detailed guide.</li>
+              <li>Reload Bondage Club, join a room, and open a character dialog.</li>
+              <li>Look for the GGC radial menu.</li>
             </ol>
             <div class="actions">
               <a class="button" href="guide.html">Detailed guide</a>
@@ -803,9 +815,10 @@
             </div>
           </div>
           <div>
-            <div class="script-box">Beta: https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js</div>
             <div class="script-box">Stable: https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js</div>
-            <div class="script-box">Beta bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{src:'https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js?v='+Date.now()}));})();</div>
+            <div class="script-box">Beta: https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js</div>
+            <div class="script-box">Stable bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{crossOrigin:'anonymous',src:'https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js?v='+Date.now()}));})();</div>
+            <div class="script-box">Beta bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{crossOrigin:'anonymous',src:'https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js?v='+Date.now()}));})();</div>
           </div>
         </div>
       </section>
