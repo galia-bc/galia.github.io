@@ -246,6 +246,10 @@
         font: 800 13px/1.55 Consolas, monospace;
       }
 
+      pre.script {
+        white-space: pre-wrap;
+      }
+
       .cards {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -369,7 +373,55 @@
             <div class="script">Stable: https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js</div>
             <div class="script">Beta: https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js</div>
             <h3>Tampermonkey or Violentmonkey (recommended)</h3>
-            <p>Install Tampermonkey or Violentmonkey, create a new userscript, and paste the Stable template from the <a href="https://github.com/galia-bc/galia.github.io/blob/main/INSTALLATION.md#tampermonkey--violentmonkey">GitHub installation guide</a>. Save it and GGC will start automatically whenever Bondage Club opens. A Beta template is available there too; only enable one GGC userscript at a time.</p>
+            <p>Install Tampermonkey or Violentmonkey, create a new userscript, replace its contents with one complete template below, and save it. GGC will start automatically whenever Bondage Club opens. Stable is recommended; only enable one GGC userscript at a time.</p>
+            <h4>Stable</h4>
+            <pre class="script">// ==UserScript==
+// @name         Galia's Gambling Club (Stable)
+// @namespace    https://www.bondageprojects.com/
+// @version      1.0.0
+// @description  Galia's Gambling Club for Bondage Club.
+// @author       Galia
+// @match        https://www.bondageprojects.elementfx.com/*
+// @match        https://bondageprojects.elementfx.com/*
+// @match        https://www.bondage-europe.com/*
+// @match        https://bondage-europe.com/*
+// @match        https://www.bondageprojects.com/*
+// @match        https://bondageprojects.com/*
+// @run-at       document-end
+// @grant        none
+// ==/UserScript==
+
+(() => {
+  const script = document.createElement("script");
+  script.crossOrigin = "anonymous";
+  script.src = "https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js";
+  script.onload = () => script.remove();
+  document.head.appendChild(script);
+})();</pre>
+            <h4>Beta</h4>
+            <pre class="script">// ==UserScript==
+// @name         Galia's Gambling Club (Beta)
+// @namespace    https://www.bondageprojects.com/
+// @version      1.0.0
+// @description  Galia's Gambling Club for Bondage Club.
+// @author       Galia
+// @match        https://www.bondageprojects.elementfx.com/*
+// @match        https://bondageprojects.elementfx.com/*
+// @match        https://www.bondage-europe.com/*
+// @match        https://bondage-europe.com/*
+// @match        https://www.bondageprojects.com/*
+// @match        https://bondageprojects.com/*
+// @run-at       document-end
+// @grant        none
+// ==/UserScript==
+
+(() => {
+  const script = document.createElement("script");
+  script.crossOrigin = "anonymous";
+  script.src = "https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js";
+  script.onload = () => script.remove();
+  document.head.appendChild(script);
+})();</pre>
             <h3>Bookmarklet (temporary)</h3>
             <p>Create a browser bookmark, paste this as its URL, then open Bondage Club and select the bookmark. It must be run again after every page reload.</p>
             <div class="script">Stable bookmarklet: javascript:(()=>{document.head.appendChild(Object.assign(document.createElement('script'),{crossOrigin:'anonymous',src:'https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js?v='+Date.now()}));})();</div>
