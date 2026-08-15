@@ -1,0 +1,419 @@
+use strict
+Mod ERROR:
+
+}\nPatch2:\n${o}
+\r
+
+Mod ${r.mod} failed to call next hook: Expected args to be array, got ${typeof e}
+)} is not object
+Failed to unload mod '${e.name}': Not registered
+Failed to register mod: Expected info object, got 
+Failed to register mod: Expected name to be non-empty string, got 
+'${e.name}'
+Failed to register mod ${r}: Expected fullName to be non-empty string, got ${typeof e.fullName}
+'${e.fullName} (${e.name})'
+Failed to register mod ${r}: Expected version to be string, got ${typeof e.version}
+Failed to register mod ${r}: Expected repository to be undefined or string, got ${typeof e.version}
+Failed to register mod ${r}: Expected options to be undefined or object, got ${typeof t}
+Refusing to load mod ${r}: it is already loaded and doesn't allow being replaced.\nWas the mod loaded multiple times?
+Mod ${r} attempted to call SDK function after being unloaded
+Mod ${r} failed to patch a function: Expected function name string, got ${typeof e}
+Mod ${r} failed to hook function '${e}': Expected priority number, got ${typeof t}
+Mod ${r} failed to hook function '${e}': Expected hook function, got ${typeof i}
+Mod ${r} failed to patch function '${e}': Expected patches object, got ${typeof t}
+Mod ${r} failed to patch function '${e}': Invalid format of patch '${i}'
+Mod ${r} failed to call a function: Expected function name string, got ${typeof e}
+Mod ${r} failed to call a function: Expected args array, got ${typeof t}
+Mod ${r} failed to get hash: Expected function name string, got ${typeof e}
+Failed to init Mod SDK: Name already in use
+Failed to init Mod SDK: Different version already loaded ('1.2.0' vs '${window.bcModSdk.version}')
+Galia's Gambling Club
+[ClubGaming] ${e}
+Ignored network message from ghosted player:
+Ignored network message targeting ghosted player:
+Blocked network send to ghosted player:
+Network send:
+Hidden
+CG_MSG sent via ServerSend
+ServerSend is not available
+Blocked GGC hidden beep to ghosted player:
+Leash
+Failed to load settings:
+Failed to save settings:
+ggc.settings.${e}
+ExtensionSettings.${S}
+Saved online settings
+Waiting for the table state...
+Initial table · betting chips only
+Hidden card
+Total ${a.dealerTotal}
+Showdown · ${Math.max(0,Math.ceil((a.showdownEndsAt-Date.now())/1e3))}s
+Place your bet
+Waiting for bets
+Your turn
+MIN $${i.minBet??50}  MAX $${i.maxBet??500}
+TARGET $${i.targetStack??2500}
+Current Bet: $${n.bet??0}
+Money bet chip
+Applies if you lose
+Blindfold
+Arms
+Legs
+Chastity
+Gag
+You won
+Push
+You lost
+Game finished
+Your fleet
+${e.opponentName||
+}'s fleet
+Place your fleet (${p})
+Waiting for opponent...
+Drag ships into your grid
+READY!
+Opponent ready
+${t}:${n}:${r}
+CONNECT 4
+TOP Score: ${a.topScore??a.score}
+Move with Arrow Keys or WASD
+Pause with Space or P
+Retry with R
+Snake
+Slot Machine
+Slots
+Minesweeper
+Mines
+Battleship
+Blackjack
+Poker
+Liar's Dice
+Wow. That was impressively bad.
+The machine thanks you for your donation.
+So close. Not really, though.
+Congratulations! You won absolutely nothing.
+Even the reels felt awkward about that one.
+Maybe gambling just isn't your superpower.
+The odds saw you coming.
+Another flawless display of losing.
+Your wallet is the real loser here.
+The machine laughed. Quietly, but still.
+Wait... you actually won? Suspicious.
+Congratulations. The machine regrets this outcome.
+Enjoy it while luck still remembers your name.
+A win? Don't let it go to your head.
+The casino would like a word with management.
+You beat the odds. Barely.
+Careful, confidence is how the machine gets you.
+Not bad. For a human.
+The reels are filing a complaint.
+Victory detected. Ego inflation imminent.
+JACKPOT ${e} ${e} ${e} ${e} ${e} ${this.getPrizeValue(e)}$
+${this.spinsUsed}:${this.reels.join(
+◉ HIDE
+⇥ EXIT
+Hello world
+I should be not procrastinating.
+Just one more
+Nice to meet you
+bold 15px Consolas, monospace
+bold 12px Consolas, monospace
+CREDITS ${a}
+BALANCE ${o}$
+900 34px Consolas, monospace
+${s} ${t}
+Insert 10$ for 1 credit
+Small
+Medium
+Big
+Custom
+Don't let them boom.
+Choose a board before playing
+Play
+Reset Scores
+Best Times
+Back
+Rows
+Columns
+CLEAR!
+BOOM!
+Back to menu?
+Yes
+${n}:${String(r).padStart(2,
+600 14px Georgia
+Standing. Waiting for the table...
+Choose roll or stand.
+LIE!
+900 30px Georgia
+900 16px Georgia
+Declare your hand
+900 28px Georgia
+800 13px Georgia
+${r.name.slice(0,12)}...
+900 102px Impact, Georgia, serif
+Liars
+700 13px Georgia
+Roll up to three times, then stand.
+Bet Amount
+Enter amount (1 - 10,000)
+${i} coins
+Your balance: ${a} coins
+Invitation from: ${e.formatPlayerWithId(e.opponentName,e.invite??0)}
+Time left: ${a}s
+IGNORE PLAYER
+Ignore player
+1 HOUR
+24 HOURS
+IGNORE ALL 1H
+Invitation sent to: ${e.formatPlayerWithId(e.sentInvite.name,e.sentInvite.id)}
+${e.lobby.gameTitle} Lobby
+${s.name}${s.status===
+Empty seat
+Invite addon player
+No available addon users found.
+Rematch request
+${e.rematchRequest.name} wants to challenge you again
+YOU WON
+YOU LOST
+${e.opponentName}'s turn
+Opponent left the game
+Eat food, avoid walls and yourself.
+Space/P pauses. R restarts after losing.
+Slot Machine: insert a credit, then spin.
+Hold reels between spins.
+Cash out banked winnings before leaving.
+Left click opens a tile.
+Right click marks or unmarks a mine.
+Numbers show mines touching that tile.
+Open every safe tile to win.
+Get three in a row to win.
+Rows, columns, and diagonals count.
+Shoot the rival grid on your turn.
+Hits give another shot. Sink all ships to win.
+Connect 4: drop discs into columns.
+First player with four connected wins.
+Lines can be horizontal, vertical, or diagonal.
+Bet with money chips, then Hit or Stand.
+Restraint chips add stake clauses to your bet.
+Dealer draws to 17. Blackjack and busts resolve automatically.
+Liar's Dice: roll poker dice, then declare a hand.
+Hands must always be higher than the previous claim.
+Aces are wild and can count as any face.
+The next player may call LIE or BELIEVE.
+BELIEVE lets them see your dice, then roll or pass.
+Calling LIE reveals the dice and ends the round.
+Wrong challenges give the challenger a point.
+At III points a player is eliminated; last player wins.
+Carrier
+Cruiser
+Submarine
+Destroyer
+Connect 4
+${e||t} [${t}]
+center center
+${e}:${i}:${a}
+${this.opponentName}'s turn
+Canvas click:
+Hide sent invite clicked
+Cancel sent invite clicked
+Leave clicked after opponent left
+Cell clicked:
+Hide clicked
+Leave clicked
+Rematch clicked
+You believed a maximum claim. Roll to push the cup higher.
+You believed it. Roll or pass a higher claim.
+Roll once before standing.
+Choose the hand you want to declare.
+Declare exactly ${e.count} dice.
+Declare exactly ${e.count} ${e.face}${e.count===1?
+Liar's Dice stand claim prepared:
+${u?.name??
+} believed ${l?.name??
+} and didn't roll.
+Declared ${i.count} ${i.face}${i.count===1?
+}. Waiting for belief or challenge.
+${c[0].name} wins the match.
+${t?.name??
+} lied. Point to ${t?.name??
+${n?.name??
+} was wrong. Point to ${n?.name??
+UX Preview
+Waiting for a valid hand before rolling.
+Roll again or stand.
+No rolls left. Stand when ready.
+${a.message} Best real: ${a.bestClaim.count} ${a.bestClaim.face}${a.bestClaim.count===1?
+Only aces can be locked.
+This ace is still inside your first cup.
+Die returned to the cup.
+Die locked for the next two rolls.
+You
+Galia
+Deya
+Lyn
+Ico
+Shin
+Bet amount must be 1-10000
+Not enough money
+Bet amount set: ${e}
+Bet cancelled
+Battleship shot:
+Blackjack restraint chip mode toggled:
+Blackjack restraint chip ignored:
+Blackjack restraint chip selected:
+Blackjack money chip selected:
+Blackjack BET clicked:
+Connect4 column clicked:
+TicTacToe handleInvite called
+TicTacToe handleAccept called
+TicTacToe handleLeave called
+TicTacToe ignored out-of-turn symbol:
+TicTacToe ignored reflected local symbol:
+${e.x}:${e.y}
+${r}:${n}
+Battleship handleInvite called
+Battleship handleAccept called
+Battleship handleLeave called
+Connect4 handleInvite called
+Connect4 handleAccept called
+Connect4 handleLeave called
+Connect4 current player mismatch:
+Failed to load ignored players:
+Failed to save ignored players:
+Permanently ghosted ${e}
+Ghosted ${e} for ${t}h
+Ignoring all invitations for ${e}h
+Unghosted ${e}
+Stopped ignoring all invitations
+Cleared all ghosted players
+&amp;
+&lt;
+&gt;
+><time datetime=
+ class=
+>${n}</time><span class=
+>GGC</span></div><strong>GGC Chats:</strong> ${this.escapeHtml(e.text)}`;else if(r)i.innerHTML=`<div class=
+`:``;i.innerHTML=`<div class=
+ggc.addonPresence
+Someone
+${Cs}.${this.getPlayerId()||
+.chat-room-message-content
+opacity 1500ms ease
+)return!1;let t=String(e.Type||
+),n=Number(globalThis.Player?.MemberNumber)||0,r=Number(e.Sender);if(r&&n&&r===n)return!1;if(t===
+)return!0;if(t===
+)return(this.getActivityTargetMemberNumber(e.Dictionary,r)||this.validTargetNumber(e.Target,r))===n||this.messageMentionsPlayer(e);if(t===
+)return(this.validTargetNumber(e.Target,r)||this.getDictionaryTaggedValue(e.Dictionary,
+)||this.getDictionaryTaggedValue(e.Dictionary,
+))===n||this.messageMentionsPlayer(e);let i=String(e.Content||
+)).join(
+?Player.MemberNumber:0,d=this.parseMaybeJson(l)??l;if(!d||typeof d!=
+)return e;try{return JSON.parse(e)}catch{return e}}extractGgcAddonEnvelope(e){let t=this.parseMaybeJson(e);if(!(!t||typeof t!=
+)){if(t.GGC?.type===
+)return t.GGC.message;if(t.BCX?.type===
+)return t.BCX.message;if(t.type===
+&&t.message)return t.message}}parseGgcBankPrefixedMessage(e){return typeof e!=
+||!e.startsWith(
+)?null:this.parseMaybeJson(e.slice(9))}parseGgcBankSecretMessage(e){if(typeof e!=
+)return null;let t=Math.max(e.lastIndexOf(
+),e.lastIndexOf(
+));return t<0||!e.slice(0,t).includes(
+)?null:this.parseMaybeJson(e.slice(t+1))}handleVibratorServerSend(e){let[t,n]=Array.isArray(e)?e:[];if(t!==
+||n?.Type!==
+)return;let r=String(n?.Content??
+,d.length?d:void 0),this.network.send({type:
+,memberNumber:s,kind:
+,text:
+}),console.log(
+,{targetNumber:s,groupName:c,newIntensity:a,zones:d}))}getInventoryItem(e,t){try{if(typeof window.InventoryGet==
+))??this.getDictionaryCharacterMemberNumber(e.find(e=>e?.Tag===
+&&!(i===r||!i&&r&&this.isSelfDrinkActivityContent(e)))return!1;let a=typeof Player<
+?Player.MemberNumber:0;return a&&i===a&&h(
+]){let n=e.find(e=>e?.Tag===t),r=n?.Text??n?.FocusGroupName??n?.GroupName??n?.AssetGroupName??n?.AssetGroup??n?.Group??n?.Name;if(typeof r==
+)||this.getActivityMemberNumber(e.Dictionary);if(!t)return;if(e.Content===
+){let n=String(this.getDictionaryTaggedValue(e.Dictionary,
+);this.coinFlipper.animateClubCoin(t,n);return}let n=Number(this.getDictionaryTaggedValue(e.Dictionary,
+)),r=String(this.getDictionaryTaggedValue(e.Dictionary,
+,r),n&&t===n&&h(
+),t&&this.network.send({type:
+,memberNumber:n,kind:
+);if(/source/i.test(e)||/activity/i.test(e)||e===
+);return RegExp(
+).test(n)})}normalizeActivityText(e){return e.toLowerCase().replace(/['’]s\b/g,
+).replace(/[^a-z0-9]+/g,
+).toLowerCase();if(this.isEatActivity(n)||t===
+)return Math.random()>.5?{kind:
+}:{kind:
+};if(n===
+)return{kind:
+};if(this.isKissActivity(n,String(e?.Content??
+)))return{kind:
+};if(this.isDrinkActivity(n,String(e?.Content??
+};if(this.isChompActivity(n,String(e?.Content??
+};if(this.isLickActivity(n,String(e?.Content??
+};let r=String(e?.Content??
+);return/\bslap\b/i.test(r)?{kind:
+}:/\bspank(?:item)?\b/i.test(r)?{kind:
+}:this.isKissActivity(n,r)?{kind:
+}:this.isDrinkActivity(n,r)?{kind:
+}:this.isChompActivity(n,r)?{kind:
+}:this.isLickActivity(n,r)?{kind:
+}:/\binject\b/i.test(r)?{kind:
+}:/\bshockitem\b/i.test(r)?{kind:
+}:null}getSpecialActivityAnimationFromMetadata(e,t){let n=typeof t?.ActivityName==
+?t.ActivityName:null;if(n){if(n===
+};let r=n.toLowerCase();if(this.isEatActivity(r))return Math.random()>.5?{kind:
+};if(r===
+};if(this.isKissActivity(r,String(e?.Content??
+};if(this.isDrinkActivity(r,String(e?.Content??
+};if(this.isChompActivity(r,String(e?.Content??
+};if(this.isLickActivity(r,String(e?.Content??
+};if(this.isVibeActivity(t,r))return{kind:
+}}return this.getSpecialActivityAnimation(e)}isKissActivity(e,t){return e===
+?!0:/(?:kiss|gagkiss|politekiss|lscg_kisseyes)/i.test(t)}isEatActivity(e){return e===
+}isDrinkActivity(e,t){return e===
+||/(?:sipitem|lscg_funnelpour|\bquaff\b)/i.test(t)}isChompActivity(e,t){return e===
+||/(?:\bchomp\b|lscg_chomp)/i.test(t)}isLickActivity(e,t){return e===
+))||this.validMemberNumber(this.getDictionaryTaggedValue(e?.Dictionary,
+)}isVibeActivity(e,t){if(t!==
+&&t!==
+]){let n=e.find(e=>e?.Tag===t),r=n?.ActivityName??n?.Activity?.Name??n?.AssetName??n?.Name??n?.Text;if(typeof r==
+&&r.trim())return r.trim()}for(let t of e){let e=t?.ActivityName??t?.Activity?.Name;if(typeof e==
+),n=t===
+,r=n?
+:this.normalizeDebugGameMode(e);return this.canvasUI.hide(),r===
+?this.debugLiarsDice():(this.canvasUI.setOpponentName(
+),this.canvasUI.startGame(r),r===
+?(this.canvasUI.updateState({cells:[
+,null,
+],canPlay:!0,result:null,winLine:[]}),this.canvasUI.settleDebugAnimations()):r===
+?this.canvasUI.updateSlotMachineState({symbols:[
+],reels:[
+],reelOrders:[[
+,localId:12291,hostId:12291,phase:n?
+,currentTurnId:n?null:12291,dealerCards:n?[]:[
+,cards:[],total:0,status:
+,stack:500,bet:0},{id:777001,name:
+,stack:500,bet:0},{id:777002,name:
+,stack:500,bet:0}]:[{id:12291,name:
+,cards:[
+],total:19,status:
+,stack:450,bet:50},{id:777001,name:
+],total:16,status:
+,stack:375,bet:100},{id:777002,name:
+],total:18,status:
+,stack:225,bet:25}]}),
+,hostId:12291,localId:12291,maxPlayers:t===
+?5:2,betAmount:250,players:[{id:12291,name:
+,status:
+},{id:777001,name:
+},{id:777002,name:
+}],inviteCandidates:[{id:777003,name:
+},{id:777004,name:
+s Gambling Club debug lobby opened: ${t}`}debugLiarsDice(){return this.canvasUI.openDebugLiarsDice(),`Galia
+}normalizeDebugGameMode(e){let t=e.toLowerCase().replace(/[\s_-]/g,
+);return t===
+:t===
+?d.hookFunction(
+,0,(e,n)=>{let r=n(e),i=e[0];return i&&typeof i.Name==
+&&typeof i.AccountName==

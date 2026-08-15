@@ -1,0 +1,10 @@
+const fs=require('fs');
+const s=fs.readFileSync('club-gaming.root.js','utf8');
+let k=s.indexOf('getToggleRows(){');
+console.log(s.slice(k, k+1700).replace(/\n/g,' '));
+console.log('\n=== sound volume label / slider text ===');
+let i=s.indexOf('drawSoundVolumeSlider');
+console.log(s.slice(i, i+400).replace(/\n/g,' '));
+console.log('\n=== Reset Settings / Restore Addon context (maybe tooltips) ===');
+let j=s.indexOf('Restore Addon');
+console.log(s.slice(j-200, j+200).replace(/\n/g,' '));
