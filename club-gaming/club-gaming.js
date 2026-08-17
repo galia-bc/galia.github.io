@@ -93,32 +93,39 @@ try{
  }
 }catch(__e__){}
 /* L10N receive hook: rewrite GGC dice-roll actions to the receiver's language */
-try{
- if(typeof ChatRoomMessage==='function'&&!window.__GGC_cmHooked){
-  window.__GGC_cmHooked=!0;
-  var __GGC_origCM=window.ChatRoomMessage;
-  window.ChatRoomMessage=function(data){
-   try{
-    if(data&&typeof data==='object'&&Array.isArray(data.Dictionary)){
-     var tag=data.Dictionary.find(function(x){return x&&x.Tag==='GGC_L10N'&&x.key;});
-     if(tag){
-      var arr=[];try{arr=JSON.parse(tag.data||'[]');}catch(__e__){}
-      var key=tag.key;
-      var local=null;
-      if(key==='dice_roll'){
-       var dc=arr[1];
-       var dstr=(dc===1)?__GGC_T("1 dice"):__GGC_TT("{0} dice", dc);
-       local=__GGC_TT("dice_roll", arr[0], dstr, arr[2]);
-      }else if(key==='{0} throws a coin into the air. The result is: {1}.'){
-       local=__GGC_TT(key, arr[0], __GGC_T(arr[1]));
-      }
-      if(local!=null){var fb=data.Dictionary.find(function(x){return x&&typeof x.Tag==='string'&&x.Tag.indexOf('MISSING TEXT IN')>=0;});if(fb)fb.Text=local;}
-     }
+function __GGC_l10n(data){
+ try{
+  if(data&&typeof data==='object'&&Array.isArray(data.Dictionary)){
+   var tag=data.Dictionary.find(function(x){return x&&x.Tag==='GGC_L10N'&&x.key;});
+   if(tag){
+    var arr=[];try{arr=JSON.parse(tag.data||'[]');}catch(__e__){}
+    var key=tag.key;
+    var local=null;
+    if(key==='dice_roll'){
+     var dc=arr[1];
+     var dstr=(dc===1)?__GGC_T("1 dice"):__GGC_TT("{0} dice", dc);
+     local=__GGC_TT("dice_roll", arr[0], dstr, arr[2]);
+    }else if(key==='{0} throws a coin into the air. The result is: {1}.'){
+     local=__GGC_TT(key, arr[0], __GGC_T(arr[1]));
     }
-   }catch(__e__){}
-   return __GGC_origCM.apply(this, arguments);
-  };
- }
-}catch(__e__){}
+    if(local!=null){var fb=data.Dictionary.find(function(x){return x&&typeof x.Tag==='string'&&x.Tag.indexOf('MISSING TEXT IN')>=0;});if(fb)fb.Text=local;}
+   }
+  }
+ }catch(__e__){}
+}
+try{
+ /* Preferred path: hook via BCX ModSDK so BCX's compatibility checker no longer flags
+    this mod as "Unknown mod not using ModSDK". GGC's own main package already passed
+    {allowReplace:true}, so window.bcModSdk is available at injection time. */
+ window.bcModSdk.registerMod({name:'GGC-i18n', fullName:'GGC i18n (翻译)', version:'1.0.0'}, {allowReplace:true})
+  .hookFunction('ChatRoomMessage', 0, function(args, next){
+   __GGC_l10n(Array.isArray(args)?args[0]:args);
+   return next(args);
+  });
+}catch(__e__){
+ /* BC 环境必然存在 bcModSdk；若极端情况下注册失败，放弃翻译注入，
+    不再回退到直接覆写 window.ChatRoomMessage，以免触发 BCX 兼容性警告。 */
+ window.__GGC_i18n_hook_failed = true;
+}
 /* ===== end GGC i18n settings-menu hook ===== */
 })();
