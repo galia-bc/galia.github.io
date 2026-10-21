@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.17 — Beta
+
+- Added Chess premoves: choose the next move while waiting; select another piece to cancel. Queued moves execute once when legal, and cancel on check, checkmate, game over or an invalidated move.
+- Added a large CHECK MATE result banner, an outlined CHESS title matching the other games, and clearer piece contrast on sage-green and wood-brown squares.
+- Renamed Chess throughout the interface, removing the Beta suffix.
+- Added the Chess radial submenu in Casual and Gambling with 1+0, 5+3, 10 minutes and ∞ options, using the existing animated submenu rings.
+- Added both clocks, Fischer increments, synchronized move clock values and host-adjudicated timeouts. The selected rhythm travels with the invitation and is preserved for rematches.
+- Kept game creation restricted to tester 12291. Verified 34 automated tests, board and checkmate rendering, and the four-option radial submenu.
+
 ## 0.4.16 — Beta
 
 - Added Chess with Unicode pieces, board rotation, legal-move highlights and four promotion choices.
