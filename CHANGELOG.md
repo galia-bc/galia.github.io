@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.16 — Beta
+
+- Added Chess with Unicode pieces, board rotation, legal-move highlights and four promotion choices.
+- Includes castling, en passant, checkmate, stalemate, repetition, fifty-move and insufficient-material draws.
+- Only player 12291 can initiate Chess games or rematches; invited opponents can accept and play.
+- Added Chess Beta to the Casual and Gambling radial menus and the classic menu for the tester.
+- Validates opponent, game session, move sequence and legality before accepting remote moves.
+- Verified build, 25 automated tests and both board orientations visually.
+
+
 ## 0.4.15 — Beta
 
 - Restored remote chat avatars with on-demand thumbnail requests between confirmed addon users.
