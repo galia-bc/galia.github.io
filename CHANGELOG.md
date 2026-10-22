@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.18 — Stable and Beta
+
+- Published the same 0.4.18 build to both Stable and Beta.
+- Verified that Chess is hidden from Casual and Gambling in both classic and radial menus for all players except tester 12291.
+- Hidden Chess time-control submenus for non-testers, including stale menu states, and blocked direct menu actions from opening Chess bets or sending invitations.
+- Kept game creation and rematches restricted to 12291; opponents invited by the tester can still accept and play.
+- Verified 36 automated tests covering menu visibility, access restrictions and existing game/network behavior.
+
 ## 0.4.17 — Beta
 
 - Added Chess premoves: choose the next move while waiting; select another piece to cancel. Queued moves execute once when legal, and cancel on check, checkmate, game over or an invalidated move.
