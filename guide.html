@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="User guide for Galia's Gambling Club, an unofficial Bondage Club addon with games, trades, bank transfers, permissions, and room tools.">
+    <meta name="description" content="Install GGC through FUSAM or a userscript. Learn about games, banking, the phone, camera, messages, calls, group positioning and skirmishes.">
     <title>GGC Detailed Guide</title>
     <style>
       :root {
@@ -329,13 +329,14 @@
     <div class="topbar">
       <header class="shell">
         <a class="brand" href="index.html">
-          <img src="club-gaming/beta/images/galias_logo.png" alt="">
+          <img src="club-gaming/stable/images/galias_logo.png" alt="">
           <span>Galia's Gambling Club</span>
         </a>
         <nav>
           <a href="index.html">Home</a>
           <a href="#install">Install</a>
           <a href="#radial">Radial menu</a>
+          <a href="#phone">Phone</a>
           <a href="#bank">Bank</a>
           <a href="#permissions">Permissions</a>
         </nav>
@@ -344,9 +345,9 @@
 
     <main class="shell">
       <div class="hero">
-        <span class="eyebrow">Detailed guide</span>
+        <span class="eyebrow">Detailed guide · Stable 0.4.91</span>
         <h1>Install, play, trade, and manage GGC safely.</h1>
-        <p class="lead">This guide explains the visible parts of Galia's Gambling Club: where to install it, how to open the radial menu, how games and trades behave, and what bank permissions mean before you allow another player to control anything.</p>
+        <p class="lead">Install GGC, explore games and room activities, and use the phone, camera and bank. This guide also explains availability, messaging and call restrictions, and the permissions behind shared features.</p>
         <div class="actions">
           <a class="button" href="#install">Start installing</a>
           <a class="button secondary" href="index.html">Back to website</a>
@@ -356,10 +357,15 @@
       <div class="grid">
         <aside class="toc">
           <strong>Guide contents</strong>
+          <a href="#whats-new">What's new in 0.4.91</a>
           <a href="#install">Installation</a>
           <a href="#radial">Radial menu</a>
           <a href="#games">Games</a>
           <a href="#trades">Trades and bets</a>
+          <a href="#activities">Positioning and skirmishes</a>
+          <a href="#phone">Phone and handsets</a>
+          <a href="#camera">Camera and photos</a>
+          <a href="#messages">Messages and calls</a>
           <a href="#bank">Bank app</a>
           <a href="#permissions">Bank permissions</a>
           <a href="#privacy">Privacy and safety</a>
@@ -367,12 +373,26 @@
         </aside>
 
         <div>
+          <section id="whats-new">
+            <h2>Now in Stable 0.4.91</h2>
+            <p>The current beta release is now also available on Stable. Existing tester restrictions are unchanged by this promotion.</p>
+            <div class="cards">
+              <div class="card"><strong>Phone and camera</strong><p>A shared phone home, wallpaper, lock-screen notifications, rear/selfie photography, group framing, zoom, drag-to-frame and a reset for focus and zoom.</p></div>
+              <div class="card"><strong>Messages and calls</strong><p>Photo attachments, online GGC friend contacts outside the room, private friend calls and an optional speaker. Initiating Messages and Calls remains limited to Galia.</p></div>
+              <div class="card"><strong>Room activities</strong><p>Group positioning, pose-aware previews, animated departures and keyboard skirmishes, including supported handheld theft interactions.</p></div>
+              <div class="card"><strong>Installation and reliability</strong><p>GGC is available through FUSAM. This release also includes friend-presence fixes, private cross-room messaging and calls, and phone rendering and lifecycle improvements.</p></div>
+            </div>
+          </section>
+
           <section id="install">
             <h2>Installation</h2>
             <p>Stable is recommended for everyday play. Beta receives new features first. You can use either URL in a Bondage Club addon loader, or choose one of the simpler methods below.</p>
             <div class="script">Stable: https://galia-bc.github.io/galia.github.io/club-gaming/stable/club-gaming.js</div>
             <div class="script">Beta: https://galia-bc.github.io/galia.github.io/club-gaming/beta/club-gaming.js</div>
-            <h3>Tampermonkey or Violentmonkey (recommended)</h3>
+            <h3>FUSAM addon manager</h3>
+            <p>FUSAM now provides GGC in its addon catalogue. Follow the <a href="https://sidiousious.gitlab.io/bc-addon-loader/">official FUSAM installation instructions</a>, open the manager in Bondage Club, find Galia's Gambling Club and enable it. Use the distribution offered in the manager; the direct Stable and Beta URLs above remain available for manual loaders.</p>
+            <p>Choose one loading method for GGC. If you enable it through FUSAM, disable any separate GGC userscript and do not also run its bookmarklet.</p>
+            <h3>Tampermonkey or Violentmonkey</h3>
             <p>Install Tampermonkey or Violentmonkey, create a new userscript, replace its contents with one complete template below, and save it. GGC will start automatically whenever Bondage Club opens. Stable is recommended; only enable one GGC userscript at a time.</p>
             <h4>Stable</h4>
             <pre class="script">// ==UserScript==
@@ -453,6 +473,9 @@
             <ul>
               <li><strong>Minesweeper:</strong> choose Small, Medium, Big, or Custom before playing. Left click opens a tile, right click marks a mine.</li>
               <li><strong>Snake:</strong> single-player score chasing with saved local scores.</li>
+              <li><strong>Chess:</strong> phone-sized board, timed games, premoves, promotion, draw offers, rematches and solo practice. Initiation is limited to eligible testers; invited opponents can accept and play.</li>
+              <li><strong>Slots:</strong> reels, stakes and GGC-money wins.</li>
+              <li><strong>Battleship:</strong> fleet placement and two-player turns with room-visible effects.</li>
               <li><strong>Blackjack and Liar's Dice:</strong> multiplayer tables with invite and lobby flows.</li>
               <li><strong>Tic Tac Toe and Connect Four:</strong> quick two-player games from the radial menu.</li>
             </ul>
@@ -469,11 +492,59 @@
             <p>Money, clothing, restraint, and ownership terms should be reviewed before accepting. If anything looks wrong, cancel before confirming.</p>
           </section>
 
+          <section id="activities">
+            <h2>Positioning and Skirmishes</h2>
+            <h3>Place yourself at...</h3>
+            <p>Eligible players can use the character activity to choose an available position beside, in front of or behind another player, including permitted kneeling positions. Groups support up to three people. Occupied places and unavailable native poses are omitted.</p>
+            <p>Use <strong>Step away</strong> to leave your group. It is a separate activity, and other members can remain together when someone leaves. Native permissions, visibility and supported Echo compatibility still apply.</p>
+            <h3>Skirmishes and handheld theft</h3>
+            <p>Skirmishes use short keyboard rounds, an animated arena and a shared tug-of-war score. Use the letters shown for your keyboard layout; follow the on-screen fallback if your browser cannot expose it. The item, pose and interaction must remain valid for the result to apply.</p>
+            <p>The General setting <strong>Use skirmishes for theft</strong> controls supported handheld theft between GGC users. The usual LSCG route remains available when either participant opts out or the target only uses LSCG. Initiating experimental activities remains subject to tester access and restraint checks.</p>
+          </section>
+
+          <section id="phone">
+            <h2>Phone and Handsets</h2>
+            <p>The GGC Phone brings Bank, Chats, Chess, quick games, Camera and Settings into one device. Drag its frame or Dynamic Island to move the phone. Use the lock screen and home controls to switch between available apps.</p>
+            <p>Phone rollout is still restricted: Galia can issue personal handsets, and recipients can use an issued phone through supported phone interactions. Installing GGC does not automatically issue a handset or enable tester-only commands. Messages and Calls initiation, phone services and management commands remain restricted to Galia.</p>
+            <ul>
+              <li><strong>Identity and wallpaper:</strong> each physical handset keeps its own identity and wallpaper through supported transfers.</li>
+              <li><strong>Notifications:</strong> unread messages appear on the lock screen. Foreign phones remain locked and can show a limited notification preview without opening the owner's apps.</li>
+              <li><strong>Hands and damage:</strong> taking out a phone requires empty hands. A screen can crack, and theft skirmishes can damage it further. A completely broken screen cannot open apps.</li>
+              <li><strong>Services:</strong> where authorized, phone purchase, screen replacement and repair are available under Others &gt; Services &gt; Phone services. Repairs retain the handset's identity.</li>
+            </ul>
+          </section>
+
+          <section id="camera">
+            <h2>Camera and Photos</h2>
+            <ol>
+              <li>Open Camera on an available handset. The rear view targets a nearby player under the phone's centre and can include that player's GGC group.</li>
+              <li>Use the curved-arrow icon beside the shutter to switch between rear and selfie cameras.</li>
+              <li>On the rear camera, use the minus and plus buttons to the left of the Dynamic Island to adjust zoom from 0.5× to 4×.</li>
+              <li>Drag the live image to offset the framing. Gestures on camera controls do not move the picture.</li>
+              <li>The focus icon to the right of the Dynamic Island restores the current head framing and default 1× zoom. It is inactive until zoom or framing changes.</li>
+              <li>Press the shutter to capture the displayed frame and attempt to copy its PNG to the clipboard. Open the thumbnail to review and share it.</li>
+            </ol>
+            <p><strong>Copy</strong> uploads the photo and copies its link. <strong>Send</strong>, available to Galia, uploads it and opens a Messages draft for recipient selection; it does not automatically send the message. <strong>Cancel</strong> closes the sharing actions.</p>
+            <p>Uploads use the external Litterbox service with a 24-hour expiry. They only start after a sharing action. Service blocks or outages can prevent link creation; the addon attempts to copy the image instead and keeps the current photo available in Camera. Photos and sharing sessions are temporary and released when Camera closes.</p>
+            <p>If room background content cannot be exported, a photo may use a neutral background with a local notice. This is separate from an upload failure.</p>
+          </section>
+
+          <section id="messages">
+            <h2>Messages and Calls</h2>
+            <h3>Messages</h3>
+            <p>Galia can initiate text and photo conversations with detected GGC users in the room and eligible online GGC friends outside it. Room contacts appear first without duplicates. Incoming messages do not require the recipient to have already taken out a phone.</p>
+            <p>Conversations support up to three photo attachments, proportional image previews and links to the original photos. Lock-screen notifications show unread previews and friend portraits. Unknown contacts display as UNKNOWN with their member number.</p>
+            <h3>Calls</h3>
+            <p>Galia can initiate calls to available GGC friends, including friends in other rooms. Recipients with an eligible personal phone can accept through the incoming call prompt. Occupied hands, restraints and locked foreign or broken phones can prevent answering.</p>
+            <p>Received speech appears locally by default and follows BC's displayed speech transformations. <strong>Speaker</strong> broadcasts received speech as a room action from that handset. Either participant can hang up. An established call can follow a supported physical phone transfer, while the foreign handset remains locked for other uses.</p>
+            <p>Text, photos and call signaling respect addon availability, friendship where required, and interaction/blocking rules. Conversations and call recents are held in memory rather than saved as a permanent chat archive.</p>
+          </section>
+
           <section id="bank">
             <h2>Bank App</h2>
             <p>The bank is a phone-style interface for your GGC money, recent transfers, and account controls.</p>
             <ul>
-              <li><strong>Send money:</strong> choose a player, enter an amount, and confirm the transfer.</li>
+              <li><strong>Send money:</strong> choose an eligible room contact or known online GGC friend, enter an amount, and confirm the transfer.</li>
               <li><strong>Latest transfers:</strong> shows recent money movements saved by the addon.</li>
               <li><strong>Active account:</strong> lets you switch between your own account and accounts you are allowed to access.</li>
               <li><strong>Settings:</strong> controls auto-accept, Findom permissions, controller access, and account safety flags.</li>
@@ -518,6 +589,10 @@
               <li>If bank buttons are disabled, check Self Access, Findom, and controller permissions.</li>
               <li>If a transfer fails, the receiver may have declined it or the confirmation may not have arrived.</li>
               <li>If the UI feels misplaced, try the reset option in GGC settings and reload the room.</li>
+              <li>If GGC loads twice, keep only one installation enabled: FUSAM, a standalone userscript, or a bookmarklet.</li>
+              <li>If Phone, Messages, Calls or an experimental activity is missing, check handset ownership and tester access. Stable promotion does not remove those restrictions.</li>
+              <li>If a photo link cannot be shared, Litterbox may be unavailable or blocking the connection, or the browser may reject clipboard access. Check the local notice; the image may already be on your clipboard.</li>
+              <li>If an online friend is missing, both sides need compatible GGC versions and the friend must have been detected previously. Block and interaction settings still apply.</li>
             </ul>
           </section>
         </div>
