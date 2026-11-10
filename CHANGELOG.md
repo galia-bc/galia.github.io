@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.119 - Beta (2026-11-10)
+
+- Resolve simultaneous Skirmish invitations into one duel while preserving item, interaction and activity permissions.
+- Explain busy/unavailable rejections, failed sends and unanswered requests. Switching windows no longer silently cancels Skirmish.
+- Verified 453 tests, TypeScript and the production build. No two-user browser test.
+
 ## 0.4.36 — Beta
 
 - Reduced the ongoing Skirmish room action message from every 15 seconds to every 60 seconds. Only the initiator sends it, missed intervals never catch up in a burst, and result/cancellation stops reminders.
